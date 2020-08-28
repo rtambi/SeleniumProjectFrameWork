@@ -3,6 +3,7 @@ package com.training.generics;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -42,6 +43,12 @@ public class GenericMethods {
 		}else if(type.equals("xpath")){
 			element = driver.findElement(By.xpath(locator));
 		}
+		else if (type.equals("linkText")) {
+			element = driver.findElement(By.linkText(locator));
+		}else if (type.equals("className")) {
+			element = driver.findElement(By.className(locator));
+		}
+		
 		if(checkSingleEntry(locator, type)){
 			System.out.println("Element Found and Returned");
 			return element;
@@ -81,4 +88,5 @@ public class GenericMethods {
 	public boolean checkSingleEntry(String locator, String type){
 		return getElementsAsList(locator, type).size() ==1;
 	}
+	
 }
